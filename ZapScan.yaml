@@ -9,8 +9,8 @@ phases:
      
   build:
     commands:
-      - docker pull owasp/zap2docker-stable
-      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t https://bazaar.moe/ -g gen.conf -r testreport.html
+      - docker pull owasp/zap2docker-weekly
+      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py -t http://legacy-env.eba-bmy3hpuy.ap-southeast-1.elasticbeanstalk.com/ -r testreport.html
       - ls
 artifacts: 
   files: 
