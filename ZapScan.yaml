@@ -6,16 +6,13 @@ phases:
     runtime-versions:
      nodejs: 10
     commands:
-      - wget https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2.10.0_Linux.tar.gz
-      - chmod 777 ZAP_2.10.0_Linux.tar.gz  
-      - tar xf ZAP_2.10.0_Linux.tar.gz     
+      - sudo yum update -y
+      - sudo amazon-linux-extras install docker
+      - sudo service docker start
+      - sudo docker pull owasp/zap2docker-live
   build:
     commands:
-      - ls
-      - cd ZAP_2.10.0
-      - ./zap.sh -cmd -quickurl http://finalyearproj-env.eba-fx5z7usi.ap-southeast-1.elasticbeanstalk.com/ -quickprogress -quickout ./zapreport.xml
-      - ls
-      - pwd
+      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://legacy-env.eba-bmy3hpuy.ap-southeast-1.elasticbeanstalk.com/ -g gen.conf -r testreport.html
 artifacts: 
   files: 
-  - ZAP_2.10.0/zapreport.xml
+  - testreport.html
