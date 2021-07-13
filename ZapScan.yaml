@@ -3,14 +3,11 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-     nodejs: 10
     commands:
-      - sudo amazon-linux-extras install docker
-      - sudo service docker start
-      - sudo docker pull owasp/zap2docker-live
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 109974893428.dkr.ecr.ap-southeast-1.amazonaws.com
   build:
     commands:
+      - docker pull owasp/zap2docker-stable
       - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://legacy-env.eba-bmy3hpuy.ap-southeast-1.elasticbeanstalk.com/ -g gen.conf -r testreport.html
 artifacts: 
   files: 
