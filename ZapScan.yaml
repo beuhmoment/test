@@ -4,7 +4,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - yum install docker
+      - amazon-linux-extras install docker
       - service docker start
      
   build:
