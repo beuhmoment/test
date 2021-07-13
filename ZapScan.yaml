@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - docker pull owasp/zap2docker-weekly
-      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py -t http://legacy-env.eba-bmy3hpuy.ap-southeast-1.elasticbeanstalk.com/ -r testreport.html
+      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py -t http://legacy-env.eba-bmy3hpuy.ap-southeast-1.elasticbeanstalk.com/ -r testreport.html -d
       - ls
 artifacts: 
   files: 
