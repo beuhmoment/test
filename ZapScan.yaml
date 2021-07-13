@@ -4,8 +4,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - amazon-linux-extras install docker
-      - service docker start
+      - which dockerd
      
   build:
     commands:
