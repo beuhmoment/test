@@ -10,8 +10,7 @@ phases:
   build:
     commands:
       - docker pull owasp/zap2docker-stable
-      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py \
-    -t https://bazaar.moe/ -g gen.conf -r testreport.html
+      - docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t https://bazaar.moe/ -g gen.conf -r testreport.html
       - ls
 artifacts: 
   files: 
