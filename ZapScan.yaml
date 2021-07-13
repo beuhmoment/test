@@ -3,10 +3,9 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-     java: corretto11
     commands:
       - ls
+     
   build:
     commands:
       - docker pull owasp/zap2docker-stable
