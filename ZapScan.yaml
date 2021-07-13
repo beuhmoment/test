@@ -4,7 +4,8 @@ version: 0.2
 phases:
   install:
     commands:
-      - ls
+      - yum install docker
+      - service docker start
      
   build:
     commands:
