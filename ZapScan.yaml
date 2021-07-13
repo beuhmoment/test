@@ -5,6 +5,9 @@ phases:
   install:
     runtime-version: 
       docker: 18
+    commands:
+      - sudo yum install docker
+      - sudo service docker start
   build:
     commands:
       - docker pull owasp/zap2docker-stable
