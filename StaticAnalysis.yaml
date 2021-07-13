@@ -1,0 +1,29 @@
+---
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+     nodejs: 10
+    commands:
+# Installing Insider CLI to do SAST Check
+      - echo Installing Insider CLI - `pwd`  
+      - go get github.com/insidersec/insider/cmd/insider      
+      - wget https://github.com/insidersec/insider/releases/download/2.1.0/insider_2.1.0_linux_x86_64.tar.gz
+      - tar -xf insider_2.1.0_linux_x86_64.tar.gz    
+      - chmod +x insider
+      - echo Insider CLI installation complete `date`   
+  build:
+    commands:
+# Running Insider CLI for SAST Check    
+      - echo Starting Insider CLI scanning `date` in `pwd`
+      - insider -tech javascript -target . -exclude tests/* -exclude node_modules/*
+reports:
+  musician-test:
+    files:
+      - report.json
+    discard-paths: 'yes'
+artifacts: 
+  files: 
+   - 'report.html'
+   - 'report.json'
