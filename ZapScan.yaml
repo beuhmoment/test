@@ -1,0 +1,21 @@
+---
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+     nodejs: 10
+    commands:
+      - wget https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2.10.0_Linux.tar.gz
+      - chmod 777 ZAP_2.10.0_Linux.tar.gz  
+      - tar xf ZAP_2.10.0_Linux.tar.gz     
+  build:
+    commands:
+      - ls
+      - cd ZAP_2.10.0
+      - ./zap.sh -cmd -quickurl http://finalyearproj-env.eba-fx5z7usi.ap-southeast-1.elasticbeanstalk.com/ -quickprogress -quickout ./zapreport.xml
+      - ls
+      - pwd
+artifacts: 
+  files: 
+  - ZAP_2.10.0/zapreport.xml
