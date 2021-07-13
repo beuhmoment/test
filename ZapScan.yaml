@@ -4,7 +4,6 @@ version: 0.2
 phases:
   install:
     commands:
-      - service docker start
       - docker pull owasp/zap2docker-stable
   build:
     commands:
